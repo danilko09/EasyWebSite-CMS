@@ -1,0 +1,1 @@
+<?php include_once SYSTEM_FILES.'bottom.php';

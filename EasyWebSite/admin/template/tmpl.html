@@ -1,0 +1,241 @@
+<html>
+  <head>
+    <title>Панель управления</title>
+    <meta charset='utf-8'/>
+    <style>
+    body {
+      overflow: hidden;
+      background-image: url(<?php tmpl::random(); ?>);
+      background-size: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: <?php echo tmpl::getVar("box_color"); ?> ;
+      font-size: 20%;
+      font-family: sans-serif;
+    }
+
+    a {
+      text-decoration: none;
+      color: #000000;
+    }
+    a:hover{
+      color: #444444;
+    }
+
+.box {
+
+    overflow: auto;
+    padding: 10px;
+    /*background: #FFFFFF;*/
+    background: <?php echo tmpl::getVar("box_color"); ?> ;
+    border-radius: 7px;
+    z-index: 0;
+    filter:alpha(opacity=75);
+    -moz-opacity:0.75;
+    opacity: 0.75;
+    border: solid 2px;
+
+}
+
+#mbox {
+  
+    border-radius: 0px;
+    z-index: 1;
+    border:0px;
+    border-bottom: solid 2px;
+    overflow: hidden;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 19px;
+    width: 98%;
+    
+}
+
+#pbox {
+    
+    margin-bottom: 10px;
+    overflow: auto;
+    height: 40%;
+    
+}
+
+#ebox {
+    
+    height: 40%;
+    overflow: auto;
+    
+}
+
+#wbox {
+
+    float: right;
+    top: 0px;
+    width: 70%;
+    margin-bottom: 30px;
+    font-size: 18px;
+    
+}
+  
+#wbox h3 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#content {
+    overflow: auto;
+    position: absolute;
+    padding: 10px 5% 0 5%;
+    height: 90%;
+    width: 90%;
+    top: 40px;
+}
+
+#left-content {
+    float: left;
+    height: 100%;
+    width: 26%;
+}
+
+
+ul.rhmenu {
+  display: inline-block;
+  margin: 0 -12px 0 0;
+  padding: 0;
+}
+ul.rhmenu li {
+    
+  border-right: solid 1px;
+  margin: 0 0 0 10px;
+  padding: 0 10px 0 0;
+  float: left;
+  list-style: none;
+}
+ul.rhmenu li a {
+  display: block;
+  padding: 0;
+  text-decoration: none;
+}
+
+
+ul.hmenu {
+  display: inline-block;
+  margin: 0 0 0 -22px;
+  padding: 0;
+}
+ul.hmenu li {
+    
+  border-left: solid 1px;
+  margin: -1px 0 0 10px;
+  padding: 0 0 0 10px;
+  float: left;
+  list-style: none;
+}
+ul.hmenu li a {
+  display: block;
+  padding: 0;
+  text-decoration: none;
+}
+ul.hmenu li ul {
+  display: none;
+  padding-left: 10px;
+}
+ul.hmenu li:hover ul {
+  display: block;
+  position: fixed;
+  padding: 13px 0 0 0;
+}
+ul.hmenu li:hover ul li {
+  float: none;
+  margin: -5px 0 0  -12px;
+  padding: 5px 10px 5px 10px;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+  border-left: solid 2px;
+  border-right: solid 2px;
+  border-bottom: solid 2px;
+  background-color: <?php echo tmpl::getVar("box_color"); ?> ;
+}
+ul.hmenu li:hover ul li a {
+  padding: 0;
+}
+    </style>
+    
+  </head>
+  <body>
+  <?php if(!defined("login_page")){ ?>
+  <div id="mbox" class="box">
+    <div style="float: left;"><font size='4%;'>
+    <ul class='hmenu'>
+      <li>Общее
+	<ul>
+	  <li><a href='<?php echo tmpl::getVar("site_root"); ?>admin'>На главную панели управления</a></li>
+	  <li><a href='<?php echo tmpl::getVar("site_root"); ?>'>На сайт</a></li>
+	</ul>
+      </li>
+      <!--<li>Настройки
+	<ul class='vmenu'>
+	<li>Настройки сайта</li>
+	<li>Настройки ПУ</li>
+	<li>Настройки оформления ПУ</li>
+	</ul>
+      </li>-->
+      <li>Страницы
+	<ul>
+	  <li><a href='<?php echo tmpl::getVar("site_root"); ?>admin/pages/new.php'>Создать новую страницу</a></li>
+	  <li style='border-top: dotted 2px;'></li>
+          <?php pages::printList("page_lnk2.html"); ?>
+	</ul>
+      </li>
+      <!--<li>Расширения
+	<ul>
+	  <li>Установка расширений</li>
+	  <li>Удаление расширений</li>
+	  <li style='border-top: dotted 2px;'></li>
+	</ul>
+      </li>-->
+      <li>Помощь
+	<ul>
+	  <li>Справка</li>
+	  <li>Тех. поддержка</li>
+	</ul>
+      </li>
+    </ul>
+    </font></div>
+      <div style="float: right;">
+        <font size='4%;'>
+            <ul class="rhmenu">
+                <!--<li><img style='width: 20px; height: 15px; vertical-align: middle;' src='<?php echo tmpl::getVar("site_root"); ?>admin/template/images/flag_rus.gif'> Русский</li>
+                <li>Природа</li>-->
+                <li><a href="<?php echo config::$URL_root.'admin/login.php?logout=1'; ?>"><img style='width: 15px; height: 15px; vertical-align: middle;' src='<?php echo tmpl::getVar("site_root"); ?>admin/template/images/exit.gif' /> Выйти</a></li>
+            </ul>
+        </font>
+      </div>
+  </div>
+  <?php } ?>
+  <div id='content'>
+      <?php if(!defined('login_page')){ ?>
+      <div id='left-content'>
+  <div id="pbox" class="box">
+    <font size='6%'>Страницы <a href='<?php echo tmpl::getVar("site_root"); ?>admin/pages/new.php'><img style='width: 20px; height: 20px;' src='<?php echo tmpl::getVar("site_root"); ?>admin/template/images/plus.png'/></a></font>
+    <br/>
+    <font size='4%;'>
+        <?php pages::printList("page_lnk.html"); ?>
+    </font>
+  </div>
+  
+  <!--<div id="ebox" class="box">
+    <font size='6%'>Расширения <img style='width: 20px; height: 20px;' src='<?php echo tmpl::getVar("site_root"); ?>admin/template/images/plus.png'/></font>
+    <br/>
+    <font size='4%;'>
+    </font>
+  </div>-->
+      </div>
+      <?php } ?>
+  <div id="wbox" class="box">
+      {content}
+  </div>
+  </div>
+  
+  </body>
+</html>
