@@ -10,7 +10,36 @@ if (!defined("SYSTEM_FILES")) {
 
 include_once SYSTEM_FILES.'admin/top.php'; ?>
 <h3>Редактирование страницы</h3><br/>
-<form>
+<?php 
+
+    if(filter_input(INPUT_POST, "post") === "1"){
+        
+        echo "Некоторые данные на этой странице ещё не обновились, обновите или перейдите на другую страницу.<br/>";
+        
+        if(filter_input(INPUT_POST, "title") == null){
+            echo "<font color='red'>Введите название страницы!</font><br/>";
+        }elseif(DataBase::getField("pages", "title", "id", filter_input(INPUT_GET, "id")) != filter_input(INPUT_POST,"title")){
+            DataBase::setFieldOnID("pages", filter_input(INPUT_GET,"id"), "title", htmlspecialchars(filter_input(INPUT_POST,"title")));
+            echo "<font color='green'>Название страницы успешно сохранено!</font><br/>";
+        }
+        
+        if(filter_input(INPUT_POST,"url") == null){
+            echo "<font color='red'>Введите расположение страницы!</font><br/>";
+        }elseif(DataBase::getFieldOnID("pages", filter_input(INPUT_GET, "id"), "url") != "/".filter_input(INPUT_POST,"url")){
+            echo "<font color='red'>Страница не была перемещена, т.к. это пробная версия движка!</font><br/>";
+        }
+        
+        if(filter_input(INPUT_POST,"content") == null){
+            echo "<font color='red'>Содержимое страницы не может быть пустым!</font><br/>";
+        }else{
+            echo "<font color='red'>Содержимое страницы не было обновлено, т.к. это пробная версия движка!</font>";
+        }
+        
+    }
+
+?>
+<form method="POST">
+    <input type='hidden' name='post' value="1"/>
     Название: <input type="text" name="title" value="<?php echo DataBase::getField("pages", "title", "id", filter_input(INPUT_GET, "id")); ?>"/><br/>    
     Расположение страницы:<br/>
     <?php echo tmpl::getVar("site_root"); ?><input style="width: 300px;" type='text' name='url' value="<?php echo substr(DataBase::getFieldOnID("pages", filter_input(INPUT_GET, "id"), "url"),1); ?>" /><br/>

@@ -9,7 +9,7 @@
         <style>
             
             body{
-                background-image: url('http://st.gdefon.com/wallpapers_original/s/198940_vesna_-cvety_-sad_1280x1024_(www.GdeFon.ru).jpg');
+                background-image: url('/dev/system_files/template/images/bg.jpg');
                 background-size: 100%;
                 margin: 0;
                 padding: 0;
@@ -19,19 +19,33 @@
             .box {
 
                 padding: 10px;
-                background: #CCEECC;
+                background: #a5adb7; /* Old browsers */
+background: -moz-linear-gradient(top,  #a5adb7 0%, #596a72 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a5adb7), color-stop(100%,#596a72)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #a5adb7 0%,#596a72 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #a5adb7 0%,#596a72 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #a5adb7 0%,#596a72 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #a5adb7 0%,#596a72 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a5adb7', endColorstr='#596a72',GradientType=0 ); /* IE6-9 */
+
                 border-radius: 1px;
                 z-index: 0;
                 filter:alpha(opacity=80);
-                -moz-opacity:0.80;
-                opacity: 0.80;
                 border: solid 1px;
 
             }
+			.menu {
+			background: #818A8E;
+			border-radius: 1px;
+            z-index: 0;
+            filter:alpha(opacity=80);
+            border: solid 1px;
+			padding: 10px;
+			}
             
             #header {
                 padding: 20px;
-                margin: 30px 10% 0 10%;
+                
             }
             
             #content-box {
@@ -73,7 +87,7 @@
         <div id="header" class="box">
             
             <h1>Демо-сайт</h1>
-            <p style='float: right; margin: -15px 0 0 0; font-size: 12px;'>Новая версия - 3.0, совсем скоро...</p>
+            <p style='float: right; margin: -15px 0 0 10px; font-size: 12px;'>Поехали...</p>
         </div>
         
         <div id='content-box'>

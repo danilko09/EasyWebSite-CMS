@@ -32,11 +32,11 @@ if(filter_input(INPUT_POST, "post") === "1"){
         if(count($var2) > 1 && $var2[(count($var2) - 1)] != null){
             if(!file_exists(config::$files_root.filter_input(INPUT_POST,"url"))){
                 $url_type = 0;//echo "file";
-            }else{echo "По этому адресу уже есть файл!";}
+            }else{echo "По этому адресу уже существует другая страница!";}
         }elseif(!is_dir(config::$files_root.filter_input(INPUT_POST,"url"))){
             $url_type = 1;//echo "dir";
         }else{
-            echo "По этому адресу уже существует папка!";
+            echo "По этому адресу уже существует другая страница!";
         }
     }
     
