@@ -63,26 +63,41 @@ if(filter_input(INPUT_POST, "post") === "1"){
     ?>
 </font>
 
+<script language="javascript" type="text/javascript"
+src="/dev/system_files/tinymce/js/tinymce/tinymce.min.js"></script>
+<script>
+        tinymce.init({
+            mode : "exact",
+            language: "ru",
+            selector:'textarea',
+            plugins: "advlist,autolink,autoresize,charmap,code",
+            autoresize_min_height: "5",
+            autoresize_max_height: "50",
+            toolbar:"code | undo redo | styleselect | bold italic | alignleft aligncenter alignright | charmap"
+            
+        });
+</script>
+
 <form method="POST">
     <input type="hidden" name="post" value="1"/>
     Название: <input type="text" name="title" value="<?php echo $title_box; ?>"/><br/>    
     Расположение страницы:<br/>
     <?php echo tmpl::getVar("site_root"); ?><input style="width: 300px;" type='text' name='url' value="<?php echo $url_box; ?>"/><br/>
     * Если вы хотите сделать страницу типа "http://site.ru/example" то в это поле пишите "http://site.ru/example/index.php"<br/>Так же, если вы хотите создать папку, в названии которой есть точка, то расположение должно кончаться символом '/'.<br/> 
-    Содержимое страницы (HTML-код):<br/>
-    <textarea style="width: 95%; height: 150px;" name="content"><?php echo $content_box; ?></textarea>
+    Содержимое страницы:<br/>
+    <textarea id="elm_content" style="width: 95%; height: 150px;" name="content"><?php echo $content_box; ?></textarea>
     
     Описание страницы:<br/>
     <textarea style="width: 95%; height: 60px;" name="desc"><?php echo $desc_box; ?></textarea>
-    Ключевые слова(через запятую):
-    <textarea style="width: 95%; height: 30px;" name="keys"><?php echo $keys_box; ?></textarea>
+    Ключевые слова(через запятую):<br/>
+    <input style='width: 95%;' type='text' name="keys" value='<?php echo $keys_box; ?>'/>
     <input style="width: 95%;" type="submit" value="Сохранить"/>
 </form>
 <div>
     <a onclick="document.getElementById('developer-desc').style.display = 'block';">Примечание от разработчика</a>
     <p id="developer-desc">
         В данный момент создание страниц очень сильно урезано.<br/>
-        Позже будет удобный редактор текста(типа TinyMCE),а так же удобный выбор подключаемых к странице расширений.
+        Позже будет удобный выбор подключаемых к странице расширений.
     </p>
     <script>document.getElementById('developer-desc').style.display = "none";</script>
     
