@@ -10,6 +10,9 @@ if (!defined("SYSTEM_FILES")) {
 
 include_once SYSTEM_FILES."admin/top.php";?>
 <h3>Удаление страницы</h3>
+<?php 
+if(filter_input(INPUT_GET,"yes") == null && filter_input(INPUT_GET,"no") == null){
+?>
 Вы действительно хотите удалить страницу "<?php echo DataBase::getField("pages", "title", "id", filter_input(INPUT_GET,"id")); ?>" ?<br/>
 <center>
     <form>
@@ -19,4 +22,15 @@ include_once SYSTEM_FILES."admin/top.php";?>
         
     </form>
 </center>
+<?php 
+
+}elseif(filter_input(INPUT_GET,"yes") != null){
+    unlink(config::$files_root.substr(DataBase::getFieldOnID("pages", filter_input(INPUT_GET, "id"), "url"),1));
+    DataBase::deleteOnID("pages", filter_input(INPUT_GET, "id"));
+    echo "Страница успешно удалена!";
+}else{
+    echo "Вы отказались от удаления.";
+}
+
+?>
 <?php include_once SYSTEM_FILES."admin/bottom.php";

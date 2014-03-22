@@ -55,7 +55,11 @@ if(filter_input(INPUT_POST, "post") === "1"){
         if(filter_input(INPUT_POST, "post") === "1"){
             
             if(filter_input(INPUT_POST,"title") != null && isset($url_type) && filter_input(INPUT_POST,"content") != null){
-                echo "Страница успешно сохранена.<br/>(Страница не будет записана, т.к. это демо-версия движка.)";
+                DataBase::insert("pages", array("url"=>"/".filter_input(INPUT_POST,"url"),"title"=>filter_input(INPUT_POST,"title"), "desc"=>strip_tags(filter_input(INPUT_POST,"desc")),"keys"=>filter_input(INPUT_POST,"keys")));
+                if($url_type == 0){
+                    file_put_contents(config::$files_root.filter_input(INPUT_POST,"url"), file_get_contents(SYSTEM_FILES."loader/site_top.php").filter_input(INPUT_POST, "content").file_get_contents(SYSTEM_FILES."loader/site_bottom.php"));
+                }
+                echo "Страница успешно сохранена.<br/>";
             }
             
         }
