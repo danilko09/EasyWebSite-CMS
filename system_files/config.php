@@ -4,7 +4,8 @@ class config{
     
     public static $files_root = "/home/u209268861/public_html/dev/";
     public static $URL_root = "/dev/";
-    public static $user_mode = 0;
+    public static $user_mode = 1;
+    public static $language = "ru_RU";
     
 }
 

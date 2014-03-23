@@ -173,13 +173,15 @@ ul.hmenu li:hover ul li a {
 	  <li><a href='<?php echo tmpl::getVar("site_root"); ?>'>На сайт</a></li>
 	</ul>
       </li>
-      <!--<li>Настройки
+      <?php if(config::$user_mode > 0){ ?>
+      <li>Настройки
 	<ul class='vmenu'>
 	<li>Настройки сайта</li>
 	<li>Настройки ПУ</li>
 	<li>Настройки оформления ПУ</li>
 	</ul>
-      </li>-->
+      </li>
+      <?php } ?>
       <li>Страницы
 	<ul>
 	  <li><a href='<?php echo tmpl::getVar("site_root"); ?>admin/pages/new.php'>Создать новую страницу</a></li>
@@ -187,13 +189,17 @@ ul.hmenu li:hover ul li a {
           <?php pages::printList("page_lnk2.html"); ?>
 	</ul>
       </li>
-      <!--<li>Расширения
+      <?php if(config::$user_mode > 0){ ?>
+      <li>Расширения
 	<ul>
 	  <li>Установка расширений</li>
+          <li>Управление расширениями</li>
 	  <li>Удаление расширений</li>
 	  <li style='border-top: dotted 2px;'></li>
+          <?php extensions::printList("extension_lnk2.html"); ?>
 	</ul>
-      </li>-->
+      </li>
+      <?php } ?>
       <li>Помощь
 	<ul>
 	  <li><a href="https://github.com/danilko09/EasyWebSite-CMS/wiki">Справка</a></li>
@@ -224,14 +230,17 @@ ul.hmenu li:hover ul li a {
     </font>
   </div>
   
-  <!--<div id="ebox" class="box">
+    <?php if(config::$user_mode > 0){ ?>      
+    <div id="ebox" class="box">
     <font size='6%'>Расширения <img style='width: 20px; height: 20px;' src='<?php echo tmpl::getVar("site_root"); ?>admin/template/images/plus.png'/></font>
     <br/>
     <font size='4%;'>
+        <?php extensions::printList("extension_lnk.html"); ?>
     </font>
-  </div>-->
-      </div>
+  </div>
       <?php } ?>
+</div>
+<?php } ?>
   <div id="wbox" class="box">
       {content}
   </div>
