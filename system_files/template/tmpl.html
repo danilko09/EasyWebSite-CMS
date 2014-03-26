@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><?php meta_data::printTitle(); ?></title>
+        <meta name="description" content="<?php meta_data::printDesc(); ?>">
+        <meta name="keywords" content="<?php meta_data::printKeys(); ?>">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <style>
+            
+            body{
+                background-image: url('/dev/system_files/template/images/bg.jpg');
+                background-size: 100%;
+                margin: 0;
+                padding: 0;
+                font-family: sans-serif;
+            }
+            
+            .box {
+
+                padding: 10px;
+                background: #a5adb7; /* Old browsers */
+background: -moz-linear-gradient(top,  #a5adb7 0%, #596a72 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a5adb7), color-stop(100%,#596a72)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #a5adb7 0%,#596a72 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #a5adb7 0%,#596a72 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #a5adb7 0%,#596a72 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #a5adb7 0%,#596a72 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a5adb7', endColorstr='#596a72',GradientType=0 ); /* IE6-9 */
+
+                border-radius: 1px;
+                z-index: 0;
+                filter:alpha(opacity=80);
+                border: solid 1px;
+
+            }
+			.menu {
+			background: #818A8E;
+			border-radius: 1px;
+            z-index: 0;
+            filter:alpha(opacity=80);
+            border: solid 1px;
+			padding: 10px;
+			}
+            
+            #header {
+                padding: 20px;
+                
+            }
+            
+            #content-box {
+                position:  inherit;
+                margin: 20px 10% 0 10%;
+                padding: 0px;
+            }
+            
+            #content {
+                float: left;
+                width: 70%;
+                margin-bottom: 50px;
+            }
+            
+            #sidebar {
+                float: right;
+                width: 25%
+            }
+            
+            .block-title {
+                font-style: oblique;
+                font-weight: bold;
+                margin-bottom: 0px;
+                padding-bottom: 0px;
+            }
+            
+            .block-content {
+                margin-top: 5px;
+                
+            }
+            
+            #block {
+                margin: 0 0 15px 0;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div id="header" class="box">
+            
+            <h1>Демо-сайт</h1>
+            <p style='float: right; margin: -15px 0 0 10px; font-size: 12px;'>Поехали...</p>
+        </div>
+        
+        <div id='content-box'>
+           <div id='content' class='box'>
+{content}
+            </div>
+            <div id='sidebar'>
+                
+                <div id='block' class="menu">
+                    <p class='block-title'>Сейчас на сайте</p>
+                    <p class='block-content'>Сейчас на сайте: <?php users::onlineCount(); ?> посетитель(ей).<br/>
+                    Рекорд посещаемости в <?php users::onlineCount_record(); ?> человек зарегистрирован <?php users::onlineCount_record_date(); ?>.
+                    </p>
+                </div>
+                
+                <div id='block' class="menu">
+                    <p class='block-title'>Стадия разработки</p>
+                    <p class='block-content'>
+                        Работаю над админкой, по этой причине она пока закрыта от общего доступа.
+                    </p>
+                </div>
+                
+                <div id='block' class="menu">
+                    <p class='block-title'>Недавние обновления</p>
+                    <p class='block-content'>
+                        1.Обновлен дизайн сайта(спасибо, <a href='http://www.rubukkit.org/members/devilez_mc.52934/'>DevilEz_Mc</a>)<br/>
+                        2.Доработано редактирование и создание страниц<br/>
+                        3.Добавлен TinyMCE<br/>
+                        4.Доступ в админку перекрыт (на время)<br/>
+                        5.Добавлен учет посетителей на сайте
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </body>
+</html>
