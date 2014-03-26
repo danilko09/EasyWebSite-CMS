@@ -13,5 +13,5 @@ include_once SYSTEM_FILES.'top.php';
 ?>
     
 Тест генератора страниц
-<?php users::toster(); ?>
+
 <?php include_once SYSTEM_FILES.'bottom.php';

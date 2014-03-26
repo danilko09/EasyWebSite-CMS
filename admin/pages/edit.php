@@ -14,6 +14,14 @@ include_once SYSTEM_FILES.'admin/top.php'; ?>
 
     if(filter_input(INPUT_POST, "post") === "1"){
         
+        //Очистка кеша
+        $tmp_url = DataBase::getFieldOnID("pages", filter_input(INPUT_GET, 'id'), "url");//определяется старый url страницы
+        data_cacher::uncache("main/pages/ext".$tmp_url);//расширения
+        data_cacher::uncache("main/pages/keys".$tmp_url);//ключевые слова
+        data_cacher::uncache("main/pages/desc".$tmp_url);//описание
+        data_cacher::uncache("main/pages/title".$tmp_url);//заголовок
+        
+        //Анализ полученных на входе данных
         echo "Некоторые данные на этой странице ещё не обновились, обновите или перейдите на другую страницу.<br/>";
         echo "<a style='color: blue;' href='".config::$URL_root.filter_input(INPUT_POST,"url")."'>Перейти на страницу.</a><br/>";
         if(filter_input(INPUT_POST, "title") == null){

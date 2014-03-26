@@ -15,12 +15,21 @@ class extensions{
         $ar = self::getListArray();
         $tmpl = tmpl::getTmpl("main", $name);
         if(is_array($ar)){
-        foreach($ar as $ext){
-            if($ext != null && isset($ext['global'])){
-                $ext['title'] = locales::getLocal($ext['id'], "ext.title");
+            $i = 0;
+            foreach($ar as $ext){
+                if($ext != null && isset($ext['global']) && $ext['adm_show'] == 1){
+                    $i++;
+                    $ext['title'] = locales::getLocal($ext['id'], "ext.title");
+                    eval("?>".$tmpl);
+                }
+            }
+            if($i == 0){
+                $ext['title'] = "<font size='2'>(нет элементов для отображения)</font>";
+                $ext['mask'] = "";
+                $ext['id'] = "";
                 eval("?>".$tmpl);
             }
-        }}
+        }
         
     }
     

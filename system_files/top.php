@@ -15,4 +15,5 @@ $mod = "site";
 include_once SYSTEM_FILES."includes.php";
 
 //Подстановка верхней части шаблона
-include_once SYSTEM_FILES."template/top.html";
+include_once SYSTEM_FILES."template/tmpl.php";
+tmpl::getTop();

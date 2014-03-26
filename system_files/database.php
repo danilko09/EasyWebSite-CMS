@@ -36,7 +36,7 @@ class DataBase{
          * 
          */
 	public static function insert($table_name, $new_values){
-		$table_name = db_config::$pref.$table_name;
+		$table_name = db_config::$pref.$table_name; $fields = ""; $values = "";
                 foreach ($new_values as $field => $value){$fields .= "`".$field."`,";}
 		foreach ($new_values as $value){$values .= "'".addslashes($value)."',";}
 		$fields = substr($fields, 0, -1);$values = substr($values, 0, -1);
@@ -45,7 +45,7 @@ class DataBase{
 	}
 	
 	private static function update($table_name, $upd_fields, $where){
-            $table_name = db_config::$pref.$table_name;
+            $table_name = db_config::$pref.$table_name;$fields = "";
 
             foreach($upd_fields as $field => $value){$fields .= "`$field` = '".addslashes($value)."',";}
             $query = "UPDATE $table_name SET ".$fields;$query = substr($query, 0, -1);

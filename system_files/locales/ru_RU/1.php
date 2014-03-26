@@ -1,8 +1,5 @@
 <?php
 
-if (!defined("SYSTEM_FILES")) {
-    define("SYSTEM_FILES", "/home/u209268861/public_html/dev/system_files/");
-}
 /* 
  * EasyWebSite Engine
  * Лицензии как таковой пока нет, поэтому можно использовать на свое усмотрение.
@@ -11,7 +8,8 @@ if (!defined("SYSTEM_FILES")) {
 class id1locals{
     
     private static $locals = array(
-        "ext.title" => "Пример расширения"
+        "ext.title" => "Посетители на сайте",
+        "ext.description" => "Считает и выводит количество посетителей на сайте."
     );
     
     public static function get($key){

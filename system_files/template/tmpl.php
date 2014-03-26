@@ -1,20 +1,18 @@
 <?php
 
-if (!defined("SYSTEM_FILES")) {
-    define("SYSTEM_FILES", "/home/u209268861/public_html/dev/system_files/");
-}
-
 class tmpl{
         
     public static function getTop(){
         
-        return file_get_contents("top.html");
+        $a = explode("{content}",file_get_contents(SYSTEM_FILES."template/tmpl.html"));
+        eval("?>".$a[0]);
         
     }
     
     public static function getBottom(){
         
-        return file_get_contents("bottom.html");
+        $a = explode("{content}",file_get_contents(SYSTEM_FILES."template/tmpl.html"));
+        eval("?>".$a[1]);
         
     }
     

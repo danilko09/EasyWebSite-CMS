@@ -1,5 +1,7 @@
 <div style='float: left; padding: 0 0 0 4%;'>
+    <?php if($ext['id'] != null){ ?>
     <a href='<?php echo tmpl::getVar("site_root"); ?>admin/<?php echo $ext["mask"]; ?>/?id=<?php echo $ext["id"]; ?>'><?php echo $ext['title'];?></a>
+    <?php }else{ echo $ext['title']; } ?>
 </div>
 <br/>
       
