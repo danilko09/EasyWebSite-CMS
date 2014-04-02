@@ -94,7 +94,7 @@
 #left-content {
     float: left;
     height: 100%;
-    width: 26%;
+    width: 26.5%;
 }
 
 
@@ -174,13 +174,13 @@ ul.hmenu li:hover ul li a {
 	</ul>
       </li>
       <?php if(config::$user_mode > 0){ ?>
-      <li>Настройки
+      <!--<li>Настройки
 	<ul class='vmenu'>
 	<li>Настройки сайта</li>
 	<li>Настройки ПУ</li>
 	<li>Настройки оформления ПУ</li>
 	</ul>
-      </li>
+      </li>-->
       <?php } ?>
       <li>Страницы
 	<ul>
@@ -192,9 +192,9 @@ ul.hmenu li:hover ul li a {
       <?php if(config::$user_mode > 0){ ?>
       <li>Расширения
 	<ul>
-	  <li>Установка расширений</li>
-          <li>Управление расширениями</li>
-	  <li>Удаление расширений</li>
+	  <li><a href='<?php echo tmpl::getVar("site_root"); ?>admin/ext/inst.php'>Установка расширений</a></li>
+          <li><a href="<?php echo tmpl::getVar('site_root'); ?>admin/settings/extensions">Управление расширениями</a></li>
+	  <li><a href="<?php echo tmpl::getVar('site_root'); ?>admin/ext/rm.php">Удаление расширений</a></li>
 	  <li style='border-top: dotted 2px;'></li>
           <?php extensions::printList("extension_lnk2.html"); ?>
 	</ul>

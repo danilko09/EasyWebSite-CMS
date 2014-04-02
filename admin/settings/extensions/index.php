@@ -1,9 +1,5 @@
 <?php
 
-error_reporting(E_ALL);
-
-ini_set("display_errors", 1);
-
 if (!defined("SYSTEM_FILES")) {
     define("SYSTEM_FILES", "/home/u209268861/public_html/dev/system_files/");
 }
@@ -14,13 +10,23 @@ if (!defined("SYSTEM_FILES")) {
 
 include_once SYSTEM_FILES.'admin/top.php';
 
-$exts = DataBase::getAll("extensions", "id", true);
+if(filter_input_array(INPUT_POST) != null){
+    foreach(filter_input_array(INPUT_POST) as $key=>$val){
+        if(is_int($key) && $val == "1"){
+            if(filter_input(INPUT_POST,"gid".$key) != null){ DataBase::setFieldOnID("extensions", $key, "global", 1); }
+            else{ DataBase::setFieldOnID("extensions", $key, "global", 0); }
+            if(filter_input(INPUT_POST, "mid".$key) != null){ DataBase::setFieldOnID("extensions", $key, "adm_show", 1); }
+            else{ DataBase::setFieldOnID("extensions", $key, "adm_show", 0); }
+        }
+    }
+}
 
-var_dump(filter_input_array(INPUT_POST));
+$exts = DataBase::getAll("extensions", "id", true);
 
 ?>
 <h3>Управление расширениями</h3>
 В таблице ниже приведены все установленные на сайте расширения.<br/>
+С помощью галочек напротив названий расширений вы можете редактировать их автоматическое подключение на всех страницах и видимость в меню "расширения" соответственно.
 <form method="POST">
 <table>
     <tr><th>id</th><th>Название</th><th>Глобальное(*)</th><th>В меню расширений(**)</th></tr>
@@ -28,6 +34,7 @@ var_dump(filter_input_array(INPUT_POST));
     <?php
     foreach($exts as $num=>$ext){
         echo "<tr>";
+        echo "<input type='hidden' name='".$ext['id']."' value='1'/>";
         echo "<td>".($num+1)."</td>";
         echo "<td>".locales::getLocal($ext['id'], "ext.title")."</td>";
         if($ext['global'] == 0){echo "<td><input name='gid".$ext['id']."' type='checkbox'/></td>";}

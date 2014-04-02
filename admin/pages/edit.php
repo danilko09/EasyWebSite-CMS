@@ -20,6 +20,7 @@ include_once SYSTEM_FILES.'admin/top.php'; ?>
         data_cacher::uncache("main/pages/keys".$tmp_url);//ключевые слова
         data_cacher::uncache("main/pages/desc".$tmp_url);//описание
         data_cacher::uncache("main/pages/title".$tmp_url);//заголовок
+        echo "<font color='green'>Кеш meta-данных страницы сброшен</font><br/>";
         
         //Анализ полученных на входе данных
         echo "Некоторые данные на этой странице ещё не обновились, обновите или перейдите на другую страницу.<br/>";
